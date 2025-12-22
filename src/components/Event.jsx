@@ -27,7 +27,7 @@ const events = [
 export default function UpcomingEvent() {
   return (
     <section className="bg-black py-20 px-4">
-      <div className="max-w-7xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto text-center">
         {/* Header */}
         <p className="text-xs tracking-widest text-yellow-500 mb-2">
           RECENT UPDATES
@@ -56,11 +56,11 @@ export default function UpcomingEvent() {
                   {event.date}
                 </span>
 
-                <p className="text-xs tracking-widest text-yellow-500 mb-2">
+                <p className="text-sm tracking-widest text-yellow-500 mb-2">
                   {event.category}
                 </p>
 
-                <h3 className="text-white text-lg font-light leading-relaxed">
+                <h3 className="text-white text-2xl font-light leading-relaxed">
                   {event.title}
                 </h3>
               </div>
