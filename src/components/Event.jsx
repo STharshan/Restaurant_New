@@ -2,79 +2,94 @@ import React from "react";
 
 const events = [
   {
+    id: 1,
+    img: "/event-1.jpg",
     date: "15/09/2022",
-    category: "FOOD FLAVOUR",
-    title: "Flavour so good you'll try to eat with your eyes.",
-    image:
-      "https://images.unsplash.com/photo-1541544741938-0af808871cc0?q=80&w=800",
+    category: "FOOD, FLAVOUR",
+    title: "Flavour so good you’ll try to eat with your eyes.",
   },
   {
+    id: 2,
+    img: "/event-2.jpg",
     date: "08/09/2022",
     category: "HEALTHY FOOD",
-    title: "Flavour so good you'll try to eat with your eyes.",
-    image:
-      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800",
+    title: "Flavour so good you’ll try to eat with your eyes.",
   },
   {
+    id: 3,
+    img: "/event-3.jpg",
     date: "03/09/2022",
-    category: "RECIPE",
-    title: "Flavour so good you'll try to eat with your eyes.",
-    image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800",
+    category: "RECIPIE",
+    title: "Flavour so good you’ll try to eat with your eyes.",
   },
 ];
 
-export default function UpcomingEvent() {
+const Event = () => {
   return (
-    <section className="bg-black py-20 px-4">
-      <div className="max-w-6xl mx-auto text-center">
-        {/* Header */}
-        <p className="text-xs tracking-widest text-yellow-500 mb-2">
+    <section className="bg-[#0b0b0b] py-24">
+      <div className="max-w-7xl mx-auto px-4">
+
+        {/* Subtitle */}
+        <p className="text-center text-[#d4af37] tracking-[0.35em] text-xs font-semibold mb-4">
           RECENT UPDATES
         </p>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white mb-14">
+
+        {/* Title */}
+        <h2 className="text-center text-white font-serif text-4xl md:text-5xl mb-16">
           Upcoming Event
         </h2>
 
-        {/* Cards */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {events.map((event, index) => (
+        {/* Grid */}
+        <div className="grid gap-10 md:grid-cols-3">
+
+          {events.map((event) => (
             <div
-              key={index}
-              className="relative group overflow-hidden rounded-md"
+              key={event.id}
+              className="relative overflow-hidden group"
             >
               {/* Image */}
               <img
-                src={event.image}
-                alt={event.category}
-                className="h-105 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src={event.img}
+                alt={event.title}
+                className="w-full h-[450px] object-cover transition-transform duration-500 group-hover:scale-105"
               />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/60 flex flex-col justify-end p-6">
-                <span className="absolute top-4 left-4 bg-yellow-500 text-black text-xs px-3 py-1 rounded">
-                  {event.date}
-                </span>
+              {/* Shine hover */}
+              <div className="pointer-events-none absolute inset-0 before:absolute before:top-0 before:left-[-150%] before:w-1/2 before:h-full before:bg-gradient-to-r before:from-transparent before:to-white/30 before:skew-x-[-20deg] before:transition-all before:duration-1000 group-hover:before:left-[200%]" />
 
-                <p className="text-sm tracking-widest text-yellow-500 mb-2">
+              {/* Date */}
+              <span className="absolute top-6 left-6 bg-black text-[#d4af37] text-xs px-3 py-1 tracking-widest font-semibold">
+                {event.date}
+              </span>
+
+              {/* Content overlay */}
+              <div className="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/70 to-transparent p-6 text-center">
+                <p className="text-[#d4af37] text-xs tracking-[0.35em] mb-2">
                   {event.category}
                 </p>
 
-                <h3 className="text-white text-2xl font-light leading-relaxed">
+                <h3 className="text-white text-lg font-serif leading-snug">
                   {event.title}
                 </h3>
               </div>
             </div>
           ))}
+
         </div>
 
         {/* Button */}
-        <div className="mt-14">
-          <button className="border border-yellow-500 text-yellow-500 px-8 py-3 text-sm tracking-widest hover:bg-yellow-500 hover:text-black transition">
+        <div className="text-center mt-16">
+          <a
+            href="#"
+            className="inline-block border border-[#d4af37] text-[#d4af37] px-10 py-3 tracking-widest text-sm hover:bg-[#d4af37] hover:text-black transition"
+          >
             VIEW OUR BLOG
-          </button>
+          </a>
         </div>
+
       </div>
     </section>
   );
-}
+};
+
+export default Event;
