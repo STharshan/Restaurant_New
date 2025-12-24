@@ -1,127 +1,45 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React from "react";
+import { Menu } from "lucide-react";
 
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const lastScroll = useRef(0);
-  const [hide, setHide] = useState(false);
-  const [active, setActive] = useState(false);
-
-  // body scroll lock
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "auto";
-  }, [open]);
-
-  // header hide on scroll (same as original)
-  useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-
-      if (y > 50) {
-        setActive(true);
-        setHide(y > lastScroll.current);
-      } else {
-        setActive(false);
-        setHide(false);
-      }
-      lastScroll.current = y;
-    };
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
+export default function Header() {
   return (
-    <>
-      {/* HEADER */}
-      <header
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          active ? "bg-[#111] py-4" : "bg-transparent py-6"
-        } ${hide ? "-translate-y-full" : "translate-y-0"}`}
-      >
-        <div className="max-w-7xl mx-auto px-5 flex items-center justify-between">
-          {/* LOGO */}
-          <img
-            src="/logo.svg"
-            alt="logo"
-            className="h-10"
-          />
-
-          {/* DESKTOP NAV */}
-          <nav className="hidden lg:flex gap-8 uppercase text-sm tracking-widest text-white">
-            {["Home", "Menus", "About Us", "Chefs", "Contact"].map((i) => (
-              <a
-                key={i}
-                href="#"
-                className="hover:text-[#e4c590] transition"
-              >
-                {i}
-              </a>
-            ))}
-          </nav>
-
-          {/* MOBILE HAMBURGER */}
-          <button
-            className="lg:hidden relative z-[60] flex flex-col gap-[6px]"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-          >
-            <span className="w-7 h-[2px] bg-white" />
-            <span className="w-7 h-[2px] bg-white" />
-            <span className="w-7 h-[2px] bg-white" />
-          </button>
-        </div>
-      </header>
-
-      {/* OVERLAY */}
-      <div
-        className={`fixed inset-0 bg-black/80 z-40 transition ${
-          open ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-        onClick={() => setOpen(false)}
-      />
-
-      {/* MOBILE DRAWER */}
-      <aside
-        className={`fixed top-0 left-0 h-full w-[280px] bg-[#0b0b0b] z-50 transform transition-transform duration-300 ${
-          open ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        {/* CLOSE */}
-        <button
-          className="absolute top-5 right-5 text-white text-2xl"
-          onClick={() => setOpen(false)}
-          aria-label="Close menu"
-        >
-          ✕
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+      <div className="container mx-auto flex items-center justify-between px-4 py-4">
+        
+        {/* Logo */}
+        <button className="font-serif text-2xl font-bold text-[#2E2A25] hover:text-[#E07A2D] transition-colors">
+          Ma&apos;s Kitchen
         </button>
 
-        {/* NAV LINKS */}
-        <ul className="mt-24 px-8 space-y-6 uppercase tracking-widest text-sm text-white">
-          {["Home", "Menus", "About Us", "Chefs", "Contact"].map((i) => (
-            <li key={i}>
-              <a
-                href="#"
-                className="block hover:text-[#e4c590] transition"
-                onClick={() => setOpen(false)}
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-6">
+          {["About", "Menu", "Packages", "Gallery", "Reviews", "Contact"].map(
+            (item) => (
+              <button
+                key={item}
+                className="text-[#2E2A25] hover:text-[#E07A2D] transition-colors text-sm font-medium"
               >
-                {i}
-              </a>
-            </li>
-          ))}
-        </ul>
+                {item}
+              </button>
+            )
+          )}
 
-        {/* CTA */}
-        <div className="mt-10 px-8">
-          <a
-            href="#"
-            className="block text-center border border-[#e4c590] py-3 uppercase tracking-widest text-xs text-[#e4c590] hover:bg-[#e4c590] hover:text-black transition"
-          >
-            Find A Table
-          </a>
-        </div>
-      </aside>
-    </>
+          {/* CTA Button */}
+          <button className="ml-4 inline-flex items-center justify-center rounded-md bg-[#E07A2D] px-4 py-2 text-sm font-medium text-white hover:bg-[#d66f26] transition">
+            Check Availability
+          </button>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-[#2E2A25] hover:text-[#E07A2D] transition-colors"
+          aria-label="Toggle menu"
+        >
+          <Menu size={24} />
+        </button>
+      </div>
+    </header>
   );
 }

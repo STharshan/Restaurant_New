@@ -1,15 +1,23 @@
 import React from 'react'
-import UpcomingEvent from '../components/Event'
+
 import Hero from '../components/Hero'
-import Service from '../components/Service'
-import OurStory from '../components/Story'
+import About from '../components/About'
+import Menu from '../components/Menu'
+import PackagesSection from '../components/PackagesSection'
+import GallerySection from '../components/GallerySection'
+import ReviewsSection from '../components/ReviewsSection'
+import ContactSection from '../components/ContactSection'
 const Home = () => {
   return (
     <div>
       <Hero />
-      <Service />
-      <OurStory />
-      <UpcomingEvent />
+      <About />
+      <Menu />
+      <PackagesSection />
+      <GallerySection />
+      <ReviewsSection />
+      <ContactSection />
+    
     </div>
   )
 }
